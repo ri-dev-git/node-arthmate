@@ -9,20 +9,30 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}))
 
 app.get('/',(req,res)=>{
-    res.send('arthmate')
+    res.send('Hello')
 })
 
 //routes
-const getRoute=require('./productRoute')
-app.use('/api/products',getRoute);
+const getRoute=require('./userRoute')
+
+app.use('/api/users',getRoute);
 
 
 
 //Mongodb
 //Z8JdPBhY6xYOVrY9
-const connect_db='mongodb+srv://rishi:Z8JdPBhY6xYOVrY9@cluster0.nvf4z.mongodb.net/ecommercedb?retryWrites=true&w=majority'
+const connect_db=process.env.MONGODB_PASS
 mongoose.connect(connect_db,{
     useNewUrlParser:true,
 })
 
 app.listen(8000);
+
+
+/*api requests are:
+crud
+c:create :post
+r:read is for get
+u:update
+d:delete
+*/
